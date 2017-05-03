@@ -1,6 +1,13 @@
 # cube.py
+
+# Created By:
 # Chris Barker
 # CMU S13 15-112 Term Project
+
+
+# Further Modified By:
+# CSC 338 Team,
+# CSC 338 Semester Project - Missouri State University
 
 from Tkinter import *
 from geometry import *
@@ -169,7 +176,7 @@ rotates to the next face so that your cube will be interpreted accurately.',
         self.delay = 100
         self.direction = (0, 0)
         self.after = 0
-        self.debug = False
+        self.debug = True
         self.message = ""
         self.sol = ''
         self.shuffleLen = 200
@@ -195,12 +202,12 @@ rotates to the next face so that your cube will be interpreted accurately.',
         self.pbVal = 0
         self.pbMax = 0
 
-        self.paused = False
+        self.paused = True
 
-        self.configureControls(controlPane)
+        #self.configureControls(controlPane)
 
-        self.configureWindow(canvas)
-        self.showInWindow()
+        #self.configureWindow(canvas)
+        #self.showInWindow()
 
     @property
     def maxRot(self):
@@ -971,11 +978,11 @@ rotates to the next face so that your cube will be interpreted accurately.',
         except:
             self.updateMessage('Unable to read camera input.')
             self.state.setSolved()
-            self.redraw()
+            #self.redraw()
         if self.debug:
             print 'final state=', self.state
                 
-        self.redraw()
+        #self.redraw()
         
     def addMoves(self, moves, status=-1):
         self.moveList[self.moveIndex+1:] = [ ]
