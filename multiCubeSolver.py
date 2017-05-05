@@ -20,7 +20,7 @@ def scramble_and_solve():
 		cube.state.rotate(cube.state.rotationInfo(random.choice(move_keys)))
 	solution = cube.getSolution()
 	solution_moves = []
-	for step in reversed(solution):
+	for step in solution:
 		solution_moves.append(step[0])
 	solution_file.write(str(solution_moves))
 	scramble_file.write(str(cube.state))
