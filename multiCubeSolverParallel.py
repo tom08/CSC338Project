@@ -9,6 +9,7 @@ from dependencies.solutions import beginner3Layer
 from dependencies.cube import Cube
 import time
 import os
+import argparse
 
 que = mp.Queue()
 
@@ -57,11 +58,18 @@ def main(num_cubes, num_processes):
 						scramble_outfile.write(line)
 				os.remove(pair[0])
 				os.remove(pair[1])
-					
 
-start = time.time()
 if __name__ == "__main__":
-	num_cubes = int(sys.argv[1])
-	num_processes = int(sys.argv[2])
-	main(num_cubes, num_processes)
-	print "Total time: ", time.time()-start
+        parser = argparse.ArgumentParser(description="Usage: >>python multiCubeSolverParallel.py <num_cubes> [-j|--jobs JOBS]")
+        parser.add_argument('cubes', type=int, help="The number of cubes to process. (required)")
+        parser.add_argument('-j', '--jobs',
+                type=int,
+                default=mp.cpu_count(),
+                help="Specifies the number of processes to use, defaults to the number of cores."
+        )
+        args = parser.parse_args()
+        num_cubes = args.cubes
+        num_processes = args.jobs
+        start = time.time()
+        main(num_cubes, num_processes)
+        print "Total time: ", time.time()-start
