@@ -1,0 +1,6 @@
+yellow up, red forward
+
+Moves to get hard coded position
+
+B'  R  L'  U2  L  R'  D'  F  R'  B  L'  D'  L2  B  D2  U2  F2  U  D  L  B'  R  L2  B  L
+
