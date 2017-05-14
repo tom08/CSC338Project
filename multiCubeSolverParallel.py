@@ -45,6 +45,11 @@ def main(num_cubes, num_processes):
 		p.start()
 	for p in processes:
 		p.join()
+
+	cube_num = 1
+	cube_line = 1
+	process_num = 1
+
 	
 	with open('solutions.txt', 'w') as solution_outfile:
 		with open('scrambles.txt', 'w') as scramble_outfile:
@@ -52,10 +57,17 @@ def main(num_cubes, num_processes):
 				pair = que.get()
 				with open(pair[0],'r') as infile:
 					for line in infile:
-						solution_outfile.write(line)
+						solution_outfile.write("Cubes in Process " + str(process_num) + "\n")
+               					solution_outfile.write(line)
+						solution_outfile.write("\n\n")
+						process_num += 1
 				with open(pair[1],'r') as infile:
 					for line in infile:
-						scramble_outfile.write(line)
+						if cube_line % 12 == 1:	
+							scramble_outfile.write("Cube " + str(cube_num) + "\n")
+							cube_num += 1
+				                scramble_outfile.write(line)
+						cube_line += 1
 				os.remove(pair[0])
 				os.remove(pair[1])
 
